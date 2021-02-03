@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour {
 	void Start () {
         goldText = GameObject.Find("GoldText").GetComponent<Text>();
         distanceText = GameObject.Find("DistanceText").GetComponent<Text>();
-        bgT = GameObject.Find("Background1").GetComponent<BackgroundTranform>();
+        bgT = GameObject.Find("Grounds").GetComponent<BackgroundTranform>();
         go = GameObject.Find("GameOver");
 
         go.SetActive(false);
@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        UpdateDistance();
+        // UpdateDistance();
 
         //如果跑动距离大于400米，算通关，后续会加通关动画（待改）
         if (dis >= 400)
@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour {
 
     public void GameOver()
     {
+        Debug.Log("sadsad");
         GameObject[] bg = GameObject.FindGameObjectsWithTag("Background");
         foreach (GameObject i in bg)
         {

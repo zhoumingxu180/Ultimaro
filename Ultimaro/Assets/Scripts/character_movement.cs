@@ -98,10 +98,10 @@ public class character_movement : MonoBehaviour
             Debug.Log("found it!");
             GameManager.Instance.GameOver();
         }
-        else
-        {
-            transform.position = Vector2.Lerp(transform.position, new Vector2(-4.5f, transform.position.y), Time.deltaTime);
-        }
+        // else
+        // {
+        //     transform.position = Vector2.Lerp(transform.position, new Vector2(-4.5f, transform.position.y), Time.deltaTime);
+        // }
 
         // get the speed of this character
         float movementPerFrame = Vector3.Distance(PreviousFramePosition, transform.position);
@@ -142,49 +142,49 @@ public class character_movement : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Debug.Log(transform.position);
-        GameObject[] bg = GameObject.FindGameObjectsWithTag("Background");
-        float middle = 0f;
-        foreach (GameObject i in bg)
-        {
-            // Debug.Log(i.GetComponent<Transform>().position);
-            middle += i.GetComponent<Transform>().position.x;
-        }
-        middle /= 2;
-        if (transform.position.x < middle)
-        {
-            // Debug.Log(bg[0].name);
-            BuoyancyEffector2D BE = bg[0].GetComponent<BuoyancyEffector2D>();
-            // Debug.Log();
-            if (BE)
-            {
-                animator.speed = 0.3f;
-            }
-            else
-            {
-                animator.speed = 1.0f;
-            }
-            // Debug.Log("YEAH!");
-            // else
-            //     Debug.Log("NO!");
-        }
-        else
-        {
-            // Debug.Log(bg[1].name);
-            BuoyancyEffector2D BE = bg[1].GetComponent<BuoyancyEffector2D>();
-            // Debug.Log();
-            if (BE)
-            {
-                animator.speed = 0.3f;
-            }
-            else
-            {
-                animator.speed = 1.0f;
-            }
-            //     Debug.Log("YEAH!");
-            // else
-            //     Debug.Log("NO!")
-        }
+        // // Debug.Log(transform.position);
+        // GameObject[] bg = GameObject.FindGameObjectsWithTag("Background");
+        // float middle = 0f;
+        // foreach (GameObject i in bg)
+        // {
+        //     // Debug.Log(i.GetComponent<Transform>().position);
+        //     middle += i.GetComponent<Transform>().position.x;
+        // }
+        // middle /= 2;
+        // if (transform.position.x < middle)
+        // {
+        //     // Debug.Log(bg[0].name);
+        //     BuoyancyEffector2D BE = bg[0].GetComponent<BuoyancyEffector2D>();
+        //     // Debug.Log();
+        //     if (BE)
+        //     {
+        //         animator.speed = 0.3f;
+        //     }
+        //     else
+        //     {
+        //         animator.speed = 1.0f;
+        //     }
+        //     // Debug.Log("YEAH!");
+        //     // else
+        //     //     Debug.Log("NO!");
+        // }
+        // else
+        // {
+        //     // Debug.Log(bg[1].name);
+        //     BuoyancyEffector2D BE = bg[1].GetComponent<BuoyancyEffector2D>();
+        //     // Debug.Log();
+        //     if (BE)
+        //     {
+        //         animator.speed = 0.3f;
+        //     }
+        //     else
+        //     {
+        //         animator.speed = 1.0f;
+        //     }
+        //     //     Debug.Log("YEAH!");
+        //     // else
+        //     //     Debug.Log("NO!")
+        // }
         // 判断是否为坡，保留
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.5f, groundLayerMask);
         if (hit.collider != null)
