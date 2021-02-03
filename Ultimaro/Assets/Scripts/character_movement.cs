@@ -18,7 +18,7 @@ public class character_movement : MonoBehaviour
     bool crouch = false; // 记录是否下蹲
     bool slope = false; // 记录是否滑坡，保留
     bool damaging = false;
-    // 记录任务血量，保留
+    // 记录人物血量，保留
     public float maxHP = 100f;
     public float currentHP = 100f;
     float Speed = 0f; // 记录/测量人物的速度，保留，用于Debug
@@ -235,7 +235,7 @@ public class character_movement : MonoBehaviour
     {
         // Debug.Log(coll.gameObject.tag);
         // 人物站在其它物体上，双跳开启，毁灭当前物体
-        if (coll.gameObject.tag == "UpCollider")
+        if (coll.gameObject.tag == "UpCollider")                  //UpCollider是地刺上的碰撞检测，用于人物扣血
         {   
             if (scene.name == "第3关.Game")
             {
@@ -249,16 +249,19 @@ public class character_movement : MonoBehaviour
             if (timeC - timeR > 1) {
                 // Debug.Log(timeC - timeR);
                 // if(!AnimatorIsPlaying("Damage"))
-                if(!damaging){
+                /*if(!damaging){
                     animator.SetBool("Damage", true);
                     // animator.SetBool("Damage", false);
                     damaging = true;
-                }
+                }*/
                 // Debug.Log(animator.GetCurrentAnimatorStateInfo(0).IsName("Damage"));
                 // animator.SetBool("Damage", false);
-                bool status = adjust_health(-20);
+
+
+                bool status = adjust_health(-20);            //扣血
                 if (!status)
                     GameManager.Instance.GameOver();
+                
             }
             timeR = timeC;
             // canJump = true;
@@ -305,7 +308,7 @@ public class character_movement : MonoBehaviour
         return currentHP;
     }
 
-    // 调节健康值，如果血量小于等于0,任务死亡
+    // 调节健康值，如果血量小于等于0,人物死亡
     public bool adjust_health(float number)
     {
         currentHP = currentHP + number / 2 * 100 * Time.fixedDeltaTime;
