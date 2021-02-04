@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour {
     private GameObject go;
     
 
-    private BackgroundTranform bgT;
+    private Rigidbody2D player;
 
     void Awake()
     {
@@ -43,7 +43,8 @@ public class GameManager : MonoBehaviour {
 	void Start () {
         goldText = GameObject.Find("GoldText").GetComponent<Text>();
         distanceText = GameObject.Find("DistanceText").GetComponent<Text>();
-        bgT = GameObject.Find("Grounds").GetComponent<BackgroundTranform>();
+        // bgT = GameObject.Find("Grounds").GetComponent<BackgroundTranform>();
+        player = GameObject.Find("Player").GetComponent<Rigidbody2D>();
         go = GameObject.Find("GameOver");
 
         go.SetActive(false);
@@ -53,7 +54,7 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        // UpdateDistance();
+        UpdateDistance();
 
         //如果跑动距离大于400米，算通关，后续会加通关动画（待改）
         if (dis >= 400)
@@ -64,7 +65,7 @@ public class GameManager : MonoBehaviour {
 
     private void UpdateDistance()
     {
-        f_dis += bgT.moveSpeed * Time.deltaTime;
+        f_dis += player.velocity.x * Time.deltaTime;
         dis = (int)f_dis;
         
         distanceText.text = dis.ToString();
