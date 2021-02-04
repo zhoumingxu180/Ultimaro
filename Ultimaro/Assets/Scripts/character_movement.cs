@@ -22,6 +22,7 @@ public class character_movement : MonoBehaviour
     // 记录人物血量，保留
     public float maxHP = 100f;
     public float currentHP = 100f;
+    public GameObject track;
     float Speed = 0f; // 记录/测量人物的速度，保留，用于Debug
     float timeR;
 
@@ -51,7 +52,15 @@ public class character_movement : MonoBehaviour
     {
         horizontalMove = 40f;
         horizontalMove += Input.GetAxisRaw("Horizontal") * factor * runSpeed;
-        Debug.Log(Input.GetAxisRaw("Horizontal") * factor);
+        // Debug.Log(Input.GetAxisRaw("Horizontal") * factor);
+
+        if (controller.isGrounded())
+        {
+            track.active = true;
+        }
+        else{
+            track.active = false;
+        }
 
         // 跳跃
         if (Input.GetButtonDown("Jump"))
@@ -63,6 +72,7 @@ public class character_movement : MonoBehaviour
                 double_jump = true;
                 // controller.isGrounded() = false;
                 animator.SetBool("IsJumping", jump);
+                // GameObject.Find("Track").active = false;
             }
             // 不在地上，且可以双重跳跃
             else if (!controller.isGrounded() && double_jump)
@@ -72,6 +82,7 @@ public class character_movement : MonoBehaviour
                 jump = true;
                 animator.SetBool("DoubleJump", double_jump);
                 double_jump = false;
+                // GameObject.Find("Track").active = true;
             }
 
         }
