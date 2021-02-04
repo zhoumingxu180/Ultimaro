@@ -11,7 +11,8 @@ public class character_movement : MonoBehaviour
     public Rigidbody2D rigidbody; // 保留
 
     public float runSpeed = 40f; // 人物速度的控制
-    float horizontalMove = 0f; // 保留
+    public float factor = 0.6f; // 加减速因子
+    float horizontalMove = 40f; // 保留
     bool jump = false; // 记录是否跳跃
     bool grounded = true; // 保留，目前使用CharacterController2D.isGrounded()来确认
     bool double_jump = false; // 记录是否双重跳跃
@@ -48,8 +49,9 @@ public class character_movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        horizontalMove = 40f;
+        horizontalMove += Input.GetAxisRaw("Horizontal") * factor * runSpeed;
+        Debug.Log(Input.GetAxisRaw("Horizontal") * factor);
 
         // 跳跃
         if (Input.GetButtonDown("Jump"))
@@ -208,6 +210,8 @@ public class character_movement : MonoBehaviour
         // Debug.Log("asdasdsabhdbsahbdhsabdh");
 
         // 移动
+        // Debug.Log(horizontalMove);
+        // horizontalMove = 40.0f;
         controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
         // if(double_jump){
         //     controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, double_jump);
