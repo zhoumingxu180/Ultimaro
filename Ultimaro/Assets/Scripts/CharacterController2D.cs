@@ -137,6 +137,10 @@ public class CharacterController2D : MonoBehaviour
 			m_Grounded = false;
 			a_DoubleJump = true;
 			// Debug.Log("sadasdkjasndjjasbdjs");
+			// Move the character by finding the target velocity
+			Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
+			// And then smoothing it out and applying it to the character
+			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 		}
 		// 未着地且可以跳跃
@@ -159,6 +163,7 @@ public class CharacterController2D : MonoBehaviour
 			// 加上一个作用力
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce*factor));
 		}
+		Debug.Log(m_Rigidbody2D.velocity.x);
 	}
 
 
