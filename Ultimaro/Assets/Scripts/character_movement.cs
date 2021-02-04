@@ -11,7 +11,8 @@ public class character_movement : MonoBehaviour
     public Rigidbody2D rigidbody; // 保留
 
     public float runSpeed = 40f; // 人物速度的控制
-    float horizontalMove = 0f; // 保留
+    public float factor = 0.6f; // 加减速因子
+    float horizontalMove = 40f; // 保留
     bool jump = false; // 记录是否跳跃
     bool grounded = true; // 保留，目前使用CharacterController2D.isGrounded()来确认
     bool double_jump = false; // 记录是否双重跳跃
@@ -48,8 +49,9 @@ public class character_movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        horizontalMove = 40f;
+        horizontalMove += Input.GetAxisRaw("Horizontal") * factor * runSpeed;
+        Debug.Log(Input.GetAxisRaw("Horizontal") * factor);
 
         // 跳跃
         if (Input.GetButtonDown("Jump"))
@@ -98,10 +100,10 @@ public class character_movement : MonoBehaviour
             Debug.Log("found it!");
             GameManager.Instance.GameOver();
         }
-        else
-        {
-            transform.position = Vector2.Lerp(transform.position, new Vector2(-4.5f, transform.position.y), Time.deltaTime);
-        }
+        // else
+        // {
+        //     transform.position = Vector2.Lerp(transform.position, new Vector2(-4.5f, transform.position.y), Time.deltaTime);
+        // }
 
         // get the speed of this character
         float movementPerFrame = Vector3.Distance(PreviousFramePosition, transform.position);
@@ -142,49 +144,49 @@ public class character_movement : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Debug.Log(transform.position);
-        GameObject[] bg = GameObject.FindGameObjectsWithTag("Background");
-        float middle = 0f;
-        foreach (GameObject i in bg)
-        {
-            // Debug.Log(i.GetComponent<Transform>().position);
-            middle += i.GetComponent<Transform>().position.x;
-        }
-        middle /= 2;
-        if (transform.position.x < middle)
-        {
-            // Debug.Log(bg[0].name);
-            BuoyancyEffector2D BE = bg[0].GetComponent<BuoyancyEffector2D>();
-            // Debug.Log();
-            if (BE)
-            {
-                animator.speed = 0.3f;
-            }
-            else
-            {
-                animator.speed = 1.0f;
-            }
-            // Debug.Log("YEAH!");
-            // else
-            //     Debug.Log("NO!");
-        }
-        else
-        {
-            // Debug.Log(bg[1].name);
-            BuoyancyEffector2D BE = bg[1].GetComponent<BuoyancyEffector2D>();
-            // Debug.Log();
-            if (BE)
-            {
-                animator.speed = 0.3f;
-            }
-            else
-            {
-                animator.speed = 1.0f;
-            }
-            //     Debug.Log("YEAH!");
-            // else
-            //     Debug.Log("NO!")
-        }
+        // // Debug.Log(transform.position);
+        // GameObject[] bg = GameObject.FindGameObjectsWithTag("Background");
+        // float middle = 0f;
+        // foreach (GameObject i in bg)
+        // {
+        //     // Debug.Log(i.GetComponent<Transform>().position);
+        //     middle += i.GetComponent<Transform>().position.x;
+        // }
+        // middle /= 2;
+        // if (transform.position.x < middle)
+        // {
+        //     // Debug.Log(bg[0].name);
+        //     BuoyancyEffector2D BE = bg[0].GetComponent<BuoyancyEffector2D>();
+        //     // Debug.Log();
+        //     if (BE)
+        //     {
+        //         animator.speed = 0.3f;
+        //     }
+        //     else
+        //     {
+        //         animator.speed = 1.0f;
+        //     }
+        //     // Debug.Log("YEAH!");
+        //     // else
+        //     //     Debug.Log("NO!");
+        // }
+        // else
+        // {
+        //     // Debug.Log(bg[1].name);
+        //     BuoyancyEffector2D BE = bg[1].GetComponent<BuoyancyEffector2D>();
+        //     // Debug.Log();
+        //     if (BE)
+        //     {
+        //         animator.speed = 0.3f;
+        //     }
+        //     else
+        //     {
+        //         animator.speed = 1.0f;
+        //     }
+        //     //     Debug.Log("YEAH!");
+        //     // else
+        //     //     Debug.Log("NO!")
+        // }
         // 判断是否为坡，保留
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.5f, groundLayerMask);
         if (hit.collider != null)
@@ -208,6 +210,8 @@ public class character_movement : MonoBehaviour
         // Debug.Log("asdasdsabhdbsahbdhsabdh");
 
         // 移动
+        // Debug.Log(horizontalMove);
+        // horizontalMove = 40.0f;
         controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
         // if(double_jump){
         //     controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, double_jump);
