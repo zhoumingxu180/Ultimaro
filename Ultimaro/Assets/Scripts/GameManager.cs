@@ -73,7 +73,11 @@ public class GameManager : MonoBehaviour {
 
     public void GameOver()
     {
+<<<<<<< HEAD
         // Debug.Log("sadsad");
+=======
+        Debug.Log("sadsad");
+>>>>>>> fc9fd60 (fix camera)
         // GameObject[] bg = GameObject.FindGameObjectsWithTag("Background");
         // foreach (GameObject i in bg)
         // {
