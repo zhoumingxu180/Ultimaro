@@ -145,8 +145,11 @@ public class CharacterController2D : MonoBehaviour
 			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 			// Debug.Log("Check!!!\n");
 			// Debug.Log("iii   %d"+m_Rigidbody2D.velocity.x);
+<<<<<<< HEAD
 			// Debug.Log("Check!!!\n");
 			// Debug.Log("iii   %d"+m_Rigidbody2D.velocity.x);
+=======
+>>>>>>> zhoumingxu180-main
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 			// Debug.Log("iii   %d"+m_Rigidbody2D.velocity.x);
 		}
