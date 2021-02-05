@@ -10,7 +10,7 @@ public class HealthBar : MonoBehaviour
     public Image healthPointEffect;
 
     private character_movement player;
-    private float hurtSpeed = 0.003f;
+    private float hurtSpeed = 0.0005f;
 
     private void Awake()
     {

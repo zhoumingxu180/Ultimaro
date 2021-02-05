@@ -337,12 +337,7 @@ public class character_movement : MonoBehaviour
 
     
     
-    public void Damaged(float a)
-    {
-        Debug.Log("Wwwwwwwwwww!!!");
-        animator.SetBool("Damage", false);
-        damaging = false;
-    }
+    
 
     public void Jumped()
     {
