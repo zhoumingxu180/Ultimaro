@@ -73,13 +73,16 @@ public class GameManager : MonoBehaviour {
 
     public void GameOver()
     {
-        Debug.Log("sadsad");
-        GameObject[] bg = GameObject.FindGameObjectsWithTag("Background");
-        foreach (GameObject i in bg)
-        {
-            Debug.Log(i);
-            i.GetComponent<BackgroundTranform>().enabled = false;
-        }
+<<<<<<< HEAD
+=======
+        // Debug.Log("sadsad");
+>>>>>>> zhoumingxu180-main
+        // GameObject[] bg = GameObject.FindGameObjectsWithTag("Background");
+        // foreach (GameObject i in bg)
+        // {
+        //     Debug.Log(i);
+        //     i.GetComponent<BackgroundTranform>().enabled = false;
+        // }
 
         // 创建变量，存取数据
         GameSaving gameSaving = new GameSaving();
