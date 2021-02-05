@@ -143,11 +143,10 @@ public class CharacterController2D : MonoBehaviour
 			Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
 			// And then smoothing it out and applying it to the character
 			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
-<<<<<<< HEAD
 			// Debug.Log("Check!!!\n");
 			// Debug.Log("iii   %d"+m_Rigidbody2D.velocity.x);
-=======
->>>>>>> fc9fd60 (fix camera)
+			// Debug.Log("Check!!!\n");
+			// Debug.Log("iii   %d"+m_Rigidbody2D.velocity.x);
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 			// Debug.Log("iii   %d"+m_Rigidbody2D.velocity.x);
 		}
@@ -172,11 +171,7 @@ public class CharacterController2D : MonoBehaviour
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce*factor));
 			// Debug.Log("ddd   %d"+m_Rigidbody2D.velocity.x);
 		}
-<<<<<<< HEAD
 		// Debug.Log(m_Rigidbody2D.velocity.x);
-=======
-		Debug.Log(m_Rigidbody2D.velocity.x);
->>>>>>> fc9fd60 (fix camera)
 	}
 
 
