@@ -271,7 +271,7 @@ public class character_movement : MonoBehaviour
                 }*/
                 // Debug.Log(animator.GetCurrentAnimatorStateInfo(0).IsName("Damage"));
                 // animator.SetBool("Damage", false);
-
+            
 
                 bool status = adjust_health(-20);            //扣血
                 if (!status)
@@ -288,8 +288,13 @@ public class character_movement : MonoBehaviour
             // animator.SetBool("IsJumping", true);
             // animator.SetBool("DoubleJump",true);
             // GameObject.Destroy(coll.transform.parent.gameObject);
+
+
+            
+
+
         }
-        // 人物被挤压致死
+        /*// 人物被挤压致死
         if (coll.gameObject.tag == "EnemyBarrier")
         {
 
@@ -303,7 +308,7 @@ public class character_movement : MonoBehaviour
             GameManager.Instance.GameOver();
 
         }
-
+        */
     }
 
     bool AnimatorIsPlaying(){
@@ -362,6 +367,14 @@ public class character_movement : MonoBehaviour
             GameManager.Instance.UpdateBonus(5);
             //gameManager.UpdateBonus(5);
             Destroy(coll.gameObject);
+        }
+
+        if (coll.gameObject.tag == "EnemyBarrier")
+        {
+            Destroy(coll.gameObject);
+            bool status = adjust_health(-10);            //扣血
+            if (!status)
+                GameManager.Instance.GameOver();
         }
     }
 }

@@ -40,6 +40,16 @@ public class ScreenFlash : MonoBehaviour
         {
             FlashScreen();                                  //碰到地刺扣血的同时屏幕红闪，可以加更多的if添加屏幕红闪的情况
         }
+        
+    }
 
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+        
+        if (coll.gameObject.tag == "EnemyBarrier")
+        {
+            FlashScreen();
+            
+        }
     }
 }

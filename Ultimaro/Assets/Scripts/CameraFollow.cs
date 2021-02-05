@@ -9,7 +9,7 @@ public class CameraFollow : MonoBehaviour
 
     
 
-    
+    // Start is called before the first frame update
     void Start()
     {
         
@@ -22,11 +22,12 @@ public class CameraFollow : MonoBehaviour
             if (transform.position != target.position)
             {
                 Vector3 targetPos = target.position;
-               
-                transform.position =new Vector3(Vector3.Lerp(transform.position, targetPos, smoothing).x, transform.position.y, transform.position.z);
+                targetPos.x = targetPos.x + 4;
+                targetPos.y = targetPos.y - 0.5f;
+                transform.position = Vector3.Lerp(transform.position, targetPos, smoothing);
             }
         }
     }
 
-   
+    
 }

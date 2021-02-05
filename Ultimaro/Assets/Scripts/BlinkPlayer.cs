@@ -42,4 +42,14 @@ public class BlinkPlayer : MonoBehaviour
         }
          
     }
+
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+
+        if (coll.gameObject.tag == "EnemyBarrier")
+        {
+            Blink(blinks, time);
+
+        }
+    }
 }
