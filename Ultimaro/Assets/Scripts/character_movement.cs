@@ -104,7 +104,7 @@ public class character_movement : MonoBehaviour
             // Debug.Log("sadasbdjbhasbdhsbaajbd");
             animator.SetBool("IsCrouching", crouch);
         }
-
+        /*
         // 人物出屏
         if (transform.position.x <= -10.5f || transform.position.y <= -8f)
         {
@@ -115,7 +115,7 @@ public class character_movement : MonoBehaviour
         // {
         //     transform.position = Vector2.Lerp(transform.position, new Vector2(-4.5f, transform.position.y), Time.deltaTime);
         // }
-
+        */
         // get the speed of this character
         float movementPerFrame = Vector3.Distance(PreviousFramePosition, transform.position);
         Speed = movementPerFrame / Time.deltaTime;
@@ -146,11 +146,11 @@ public class character_movement : MonoBehaviour
 
         // 保留，暂时无用，加速跑功能时可以用
         animator.SetFloat("Speed", Mathf.Abs(Speed));
+        //随时间回血
+        adjust_health(0.003f);
 
-        // 随人物移动摄像机,暂时不需要
-        // camera.position = new Vector3(transform.position.x+4.5f, camera.position.y, camera.position.z);
 
- 
+
     }
 
     void FixedUpdate()
@@ -273,7 +273,7 @@ public class character_movement : MonoBehaviour
                 // animator.SetBool("Damage", false);
             
 
-                bool status = adjust_health(-20);            //扣血
+                bool status = adjust_health(-10);            //扣血
                 if (!status)
                     GameManager.Instance.GameOver();
                 
@@ -309,6 +309,11 @@ public class character_movement : MonoBehaviour
 
         }
         */
+
+        if (coll.gameObject.tag == "UpCollider1")
+        {
+            GameObject.Destroy(coll.transform.parent.gameObject);
+        }
     }
 
     bool AnimatorIsPlaying(){
