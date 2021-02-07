@@ -13,14 +13,14 @@ public class EnemySnake : MonoBehaviour
     private float wait;
 
     // Use this for initialization
-    public  void Start()
+    void Start()
     {
         
         wait = waitTime;
     }
 
     // Update is called once per frame
-    public  void Update()
+    void Update()
     {
        
         transform.position =

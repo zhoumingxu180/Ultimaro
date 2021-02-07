@@ -57,10 +57,10 @@ public class GameManager : MonoBehaviour {
         UpdateDistance();
 
         //如果跑动距离大于400米，算通关，后续会加通关动画（待改）
-        if (dis >= 400)
+        /*if (dis >= 400)
         {
             SceneManager.LoadScene("通关界面.game");
-        }
+        }*/
 	}
 
     private void UpdateDistance()
